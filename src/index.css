@@ -1,0 +1,25 @@
+/* URL IMPORTS (SUCH AS FONT IMPORTS) SHOULD BE KEPT ABOVE TAILWIND IMPORTS - DO NOT DELETE THIS COMMENT */
+
+/* PLEASE NOTE: THESE TAILWIND IMPORTS SHOULD NEVER BE DELETED - DO NOT DELETE THIS COMMENT */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+/* DO NOT DELETE THESE TAILWIND IMPORTS, OTHERWISE THE STYLING WILL NOT RENDER AT ALL - DO NOT DELETE THIS COMMENT */
+
+
+/* ============================================ */
+/* BONSAI DESIGN SYSTEM - CUSTOM BASE STYLES */
+/* ============================================ */
+
+@layer base {
+  body {
+    @apply bg-background text-stone-900;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.625;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-stone-900;
+  }
+}
