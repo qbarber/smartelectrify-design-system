@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 // Primitives
 export { Button } from './primitives/Button';
 export type { ButtonProps } from './primitives/Button';
@@ -6,10 +5,12 @@ export { Input } from './primitives/Input';
 export type { InputProps } from './primitives/Input';
 export { Select } from './primitives/Select';
 export type { SelectProps, SelectOption } from './primitives/Select';
-export { Card } from './primitives/Card';
+export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './primitives/Card';
 export type {
   CardProps,
   CardHeaderProps,
+  CardTitleProps,
+  CardDescriptionProps,
   CardContentProps,
   CardFooterProps } from
 './primitives/Card';

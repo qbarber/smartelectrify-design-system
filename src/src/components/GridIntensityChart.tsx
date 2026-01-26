@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '../primitives/Card';
+import { Card, CardHeader, CardContent } from '../primitives/Card';
 import {
   AreaChart,
   Area,
@@ -75,7 +75,7 @@ export const GridIntensityChart = ({
   };
   return (
     <Card data-id={dataId}>
-      <Card.Header>
+      <CardHeader>
         <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
         <p className="text-sm text-slate-500 mt-1">
           Optimize your energy usage for lower emissions
@@ -94,8 +94,8 @@ export const GridIntensityChart = ({
             <span className="text-xs text-slate-600">Avoid</span>
           </div>
         </div>
-      </Card.Header>
-      <Card.Content>
+      </CardHeader>
+      <CardContent>
         <ResponsiveContainer width="100%" height={300}>
           <AreaChart
             data={data}
@@ -146,7 +146,7 @@ export const GridIntensityChart = ({
 
           </AreaChart>
         </ResponsiveContainer>
-      </Card.Content>
+      </CardContent>
     </Card>);
 
 };

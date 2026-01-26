@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '../primitives/Card';
+import { Card, CardHeader, CardContent } from '../primitives/Card';
 import { CheckIcon } from 'lucide-react';
 export interface Scenario {
   name: string;
@@ -29,15 +29,15 @@ export const ScenarioTable = ({
 }: ScenarioTableProps) => {
   return (
     <Card data-id={dataId}>
-      <Card.Header>
+      <CardHeader>
         <h3 className="text-lg font-semibold text-slate-900">
           Compare Scenarios
         </h3>
         <p className="text-sm text-slate-500 mt-1">
           Side-by-side comparison of upgrade options
         </p>
-      </Card.Header>
-      <Card.Content className="p-0">
+      </CardHeader>
+      <CardContent className="p-0">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-slate-50 border-b border-slate-200">
@@ -121,7 +121,7 @@ export const ScenarioTable = ({
             </tbody>
           </table>
         </div>
-      </Card.Content>
+      </CardContent>
     </Card>);
 
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '../primitives/Card';
+import { Card, CardHeader, CardContent } from '../primitives/Card';
 import {
   LineChart,
   Line,
@@ -59,7 +59,7 @@ export const SavingsChart = ({
   const totalSavings = data[data.length - 1]?.cumulativeSavings || 0;
   return (
     <Card data-id={dataId}>
-      <Card.Header>
+      <CardHeader>
         <div className="flex items-start justify-between">
           <div>
             <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
@@ -74,8 +74,8 @@ export const SavingsChart = ({
             </p>
           </div>
         </div>
-      </Card.Header>
-      <Card.Content>
+      </CardHeader>
+      <CardContent>
         <ResponsiveContainer width="100%" height={350}>
           <LineChart
             data={data}
@@ -153,7 +153,7 @@ export const SavingsChart = ({
 
           </LineChart>
         </ResponsiveContainer>
-      </Card.Content>
+      </CardContent>
     </Card>);
 
 };

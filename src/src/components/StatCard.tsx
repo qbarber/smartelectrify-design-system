@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '../primitives/Card';
+import { Card, CardContent } from '../primitives/Card';
 import { TrendingUpIcon, TrendingDownIcon } from 'lucide-react';
 export interface StatCardProps {
   label: string;
@@ -29,7 +29,7 @@ export const StatCard = ({
   };
   return (
     <Card data-id={dataId}>
-      <Card.Content className="py-5">
+      <CardContent className="py-5">
         <div className="flex items-start justify-between">
           <div className="flex-1">
             <p className="text-sm font-medium text-slate-600">{label}</p>
@@ -62,7 +62,7 @@ export const StatCard = ({
             </div>
           }
         </div>
-      </Card.Content>
+      </CardContent>
     </Card>);
 
 };

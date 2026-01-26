@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input } from '../primitives/Input';
 import { Select } from '../primitives/Select';
-import { Card } from '../primitives/Card';
+import { Card, CardHeader, CardContent } from '../primitives/Card';
 export interface HomeProfile {
   address: string;
   zipCode: string;
@@ -33,13 +33,13 @@ export const HomeProfileForm = ({
   };
   return (
     <Card data-id={dataId}>
-      <Card.Header>
+      <CardHeader>
         <h3 className="text-lg font-semibold text-slate-900">Home Profile</h3>
         <p className="text-sm text-slate-500 mt-1">
           Tell us about your home to get personalized recommendations
         </p>
-      </Card.Header>
-      <Card.Content>
+      </CardHeader>
+      <CardContent>
         <div className="space-y-4">
           <Input
             label="Address"
@@ -127,7 +127,7 @@ export const HomeProfileForm = ({
             helperText="Enter 0 if you don't use gas" />
 
         </div>
-      </Card.Content>
+      </CardContent>
     </Card>);
 
 };

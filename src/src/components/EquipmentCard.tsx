@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '../primitives/Card';
+import { Card, CardContent } from '../primitives/Card';
 import { CheckIcon } from 'lucide-react';
 export interface Equipment {
   type: 'heat_pump' | 'solar' | 'battery' | 'panel_upgrade';
@@ -46,7 +46,7 @@ export const EquipmentCard = ({
       data-id={dataId}
       onClick={handleClick}>
 
-      <Card.Content>
+      <CardContent>
         <div className="flex items-start justify-between">
           <div className="flex items-start gap-3 flex-1">
             {icon &&
@@ -98,7 +98,7 @@ export const EquipmentCard = ({
             </span>
           </div>
         </div>
-      </Card.Content>
+      </CardContent>
     </Card>);
 
 };

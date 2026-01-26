@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '../primitives/Card';
+import { Card, CardHeader, CardContent } from '../primitives/Card';
 import {
   DollarSignIcon,
   TrendingUpIcon,
@@ -25,15 +25,15 @@ export const ROIDashboard = ({
   const lifetimeSavings = data.annualSavings * 15; // 15 year projection
   return (
     <Card data-id={dataId}>
-      <Card.Header>
+      <CardHeader>
         <h3 className="text-lg font-semibold text-slate-900">
           Return on Investment
         </h3>
         <p className="text-sm text-slate-500 mt-1">
           Your personalized financial and environmental impact
         </p>
-      </Card.Header>
-      <Card.Content>
+      </CardHeader>
+      <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Upfront Cost */}
           <div className="p-4 rounded-lg bg-slate-50">
@@ -128,7 +128,7 @@ export const ROIDashboard = ({
             </p>
           </div>
         </div>
-      </Card.Content>
+      </CardContent>
     </Card>);
 
 };

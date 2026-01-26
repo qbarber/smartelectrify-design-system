@@ -4,6 +4,8 @@ import {
   Input,
   Select,
   Card,
+  CardHeader,
+  CardContent,
   AddressInput,
   HomeProfileForm,
   EquipmentCard,
@@ -192,10 +194,10 @@ export const ComponentPreview = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card>
-              <Card.Header>
+              <CardHeader>
                 <h3 className="font-semibold text-slate-900">Buttons</h3>
-              </Card.Header>
-              <Card.Content>
+              </CardHeader>
+              <CardContent>
                 <div className="flex flex-wrap gap-3">
                   <Button variant="primary">Primary Button</Button>
                   <Button variant="secondary">Secondary Button</Button>
@@ -210,16 +212,16 @@ export const ComponentPreview = () => {
                     Disabled
                   </Button>
                 </div>
-              </Card.Content>
+              </CardContent>
             </Card>
 
             <Card>
-              <Card.Header>
+              <CardHeader>
                 <h3 className="font-semibold text-slate-900">
                   Inputs & Selects
                 </h3>
-              </Card.Header>
-              <Card.Content>
+              </CardHeader>
+              <CardContent>
                 <div className="space-y-4">
                   <Input label="Text Input" placeholder="Enter text..." />
                   <Input label="With Error" error="This field is required" />
@@ -239,7 +241,7 @@ export const ComponentPreview = () => {
                     placeholder="Choose an option" />
 
                 </div>
-              </Card.Content>
+              </CardContent>
             </Card>
           </div>
         </section>
