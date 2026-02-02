@@ -1,0 +1,87 @@
+Add 4 new pages to /src/pages using existing primitives from /src/primitives.
+
+DESIGN SYSTEM:
+- Use existing components: Button, Card, Input, Select, AddressInput, HomeProfileForm, EquipmentCard, StatCard, ROIDashboard, ScenarioTable, GridIntensityChart, SavingsChart
+- Emerald/stone color palette (primary: #059669, stone backgrounds)
+- Warm stone-50 background (#fafaf9)
+- Generous spacing (p-6, gap-8), soft shadows, rounded corners
+- Reference: Linear.app, Stripe.com (professional, data-focused)
+
+PAGE 1: LandingPage.tsx
+- Hero section (2-column grid on desktop, stack on mobile):
+  - Left column:
+    * Headline (text-4xl font-bold): "Calculate Your Home Electrification Savings"
+    * Subhead (text-xl text-stone-600): "Get personalized ROI, incentives, and carbon impact in 2 minutes"
+    * CTA Button (size="lg", emerald-600): "Start Free Calculator"
+  - Right column:
+    * Hero image (aspect-ratio-video, rounded-xl, object-cover)
+    * Use modern placeholder image of home with solar panels
+    * Add HTML comment: <!-- Replace with professional photo from Unsplash: modern home with solar panels, clean energy aesthetic -->
+
+- How It Works section (3-column grid, center-aligned):
+  * Column 1: MapPin icon, "Enter Your Address", description
+  * Column 2: Home icon, "Configure Your Home", description  
+  * Column 3: TrendingUp icon, "See Your Savings", description
+
+- Feature highlights (3-column Card grid):
+  * Card 1: "Grid-Aware Optimization" - Time energy usage for max savings
+  * Card 2: "15-Year Projections" - Long-term cost comparison
+  * Card 3: "Federal + State Incentives" - Automatic incentive calculations
+
+- Trust signals (centered):
+  * Text: "Powered by data from NREL & Rewiring America"
+
+- Bottom CTA section:
+  * "Ready to electrify your home? Start calculating now"
+  * CTA Button: "Get Started"
+
+PAGE 2: CalculatorPage.tsx
+- Progress indicator at top (1/4, 2/4, 3/4, 4/4 with emerald fill)
+- Multi-step form with conditional rendering based on current step:
+  * Step 1: AddressInput component (use existing from /src/primitives)
+  * Step 2: HomeProfileForm component (use existing from /src/primitives)
+  * Step 3: Equipment selection - Grid of EquipmentCard components (heat pump, solar, battery options)
+  * Step 4: Review summary showing all selections
+- Navigation buttons:
+  * "Back" button (secondary variant, disabled on step 1)
+  * "Next" or "Calculate" button (primary, emerald-600)
+- State management with useState for current step and form data
+- Display step title and description for each step
+
+PAGE 3: ResultsPage.tsx
+- Page header: "Your Electrification Plan"
+- Results sections in order:
+  * ROIDashboard component (existing) - shows costs, savings, payback
+  * ScenarioTable component (existing) - compare heat pump only vs heat pump + solar vs full electrification
+  * Two-column grid:
+    - GridIntensityChart component (existing) - optimal charging times
+    - SavingsChart component (existing) - 15-year cost projection
+- Action buttons (centered, gap-4):
+  * "Download PDF" button (secondary variant)
+  * "Save This Calculation" button (primary, emerald-600)
+- "Start New Calculation" link below buttons
+
+PAGE 4: DashboardPage.tsx
+- Page header: "Your Saved Calculations"
+- Saved calculations grid (3 columns desktop, 1 column mobile):
+  * Each Card shows:
+    - Calculation name (font-semibold)
+    - Date saved (text-sm, muted)
+    - Annual Savings (text-2xl, emerald-600)
+    - Payback period (text-sm)
+    - "View Details" button
+  * Use mock data: 2-3 example saved calculations
+- "Create New Calculation" button (prominent, emerald-600, at top)
+- Empty state (if no mock calculations):
+  * Icon (CalculatorIcon from lucide-react)
+  * "No saved calculations yet"
+  * "Start your first calculation to compare scenarios and track savings"
+  * CTA button
+
+ALL PAGES:
+- Mobile-responsive (stack columns on mobile)
+- Use existing primitives (Button, Card, Input, etc.)
+- Include TypeScript types/interfaces
+- Add mock data where needed
+- Clean, professional spacing and layout
+- Lucide React icons where appropriate
