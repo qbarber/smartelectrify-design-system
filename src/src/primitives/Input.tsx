@@ -1,61 +1,109 @@
-import React, { forwardRef } from 'react';
-export interface InputProps extends
-  Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
-  label?: string;
-  error?: string;
-  helperText?: string;
-  'data-id'?: string;
-}
-export const Input = forwardRef<HTMLInputElement, InputProps>(
-  (
-  {
-    label,
-    error,
-    helperText,
-    className = '',
-    'data-id': dataId,
-    id,
-    ...props
-  },
-  ref) =>
-  {
-    const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
-    return (
-      <div className="w-full" data-id={dataId}>
-        {label &&
-        <label
-          htmlFor={inputId}
-          className="block text-sm font-medium text-slate-700 mb-1">
+'use client'
+import * as React from 'react'
+import { cn } from '../lib/utils'
 
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string
+  helperText?: string
+  error?: boolean
+  errorMessage?: string
+  inputSize?: 'sm' | 'md' | 'lg'
+  success?: boolean
+}
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  (
+    {
+      className,
+      type,
+      label,
+      helperText,
+      error,
+      errorMessage,
+      inputSize = 'md',
+      success,
+      id,
+      disabled,
+      ...props
+    },
+    ref
+  ) => {
+    const inputId = React.useId()
+    const helperTextId = `${inputId}-helper`
+    const errorMessageId = `${inputId}-error`
+
+    const sizeClasses = {
+      sm: 'h-10 text-sm',
+      md: 'h-12 text-base',
+      lg: 'h-14 text-lg',
+    }
+
+    return (
+      <div className="w-full">
+        {label && (
+          <label
+            htmlFor={id || inputId}
+            className="mb-1.5 block text-sm font-medium text-stone-900"
+          >
             {label}
           </label>
-        }
+        )}
         <input
+          type={type}
+          id={id || inputId}
           ref={ref}
-          id={inputId}
-          className={`w-full px-3 py-2 border rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-colors ${error ? 'border-red-500' : 'border-slate-300'} ${className}`}
+          disabled={disabled}
           aria-invalid={error ? 'true' : 'false'}
           aria-describedby={
-          error ?
-          `${inputId}-error` :
-          helperText ?
-          `${inputId}-helper` :
-          undefined
+            error
+              ? errorMessageId
+              : helperText
+                ? helperTextId
+                : undefined
           }
-          {...props} />
-
-        {error &&
-        <p id={`${inputId}-error`} className="mt-1 text-sm text-red-600">
-            {error}
-          </p>
-        }
-        {helperText && !error &&
-        <p id={`${inputId}-helper`} className="mt-1 text-sm text-slate-500">
+          className={cn(
+            // Base styles
+            'w-full rounded-lg border border-stone-300 bg-white px-3 text-stone-900 placeholder:text-stone-400 transition-all duration-200 outline-none',
+            // Size variants
+            sizeClasses[inputSize],
+            // Focus state - YOUR emerald color (not Bonsai blue)
+            'focus:border-primary-600 focus:ring-2 focus:ring-primary-600 focus:ring-offset-2',
+            // Error state
+            error &&
+              'border-red-500 focus:border-red-500 focus:ring-red-500',
+            // Success state
+            success &&
+              'border-green-500 focus:border-green-500 focus:ring-green-500',
+            // Disabled state
+            disabled &&
+              'cursor-not-allowed bg-stone-50 opacity-50',
+            className
+          )}
+          {...props}
+        />
+        {helperText && !error && (
+          <p
+            id={helperTextId}
+            className="mt-1.5 text-sm text-stone-600"
+          >
             {helperText}
           </p>
-        }
-      </div>);
-
+        )}
+        {error && errorMessage && (
+          <p
+            id={errorMessageId}
+            className="mt-1.5 text-sm text-red-600"
+            role="alert"
+          >
+            {errorMessage}
+          </p>
+        )}
+      </div>
+    )
   }
-);
-Input.displayName = 'Input';
+)
+
+Input.displayName = 'Input'
+
+export { Input }
