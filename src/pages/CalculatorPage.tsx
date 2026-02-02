@@ -1,16 +1,14 @@
 import { useState } from 'react';
 import { Button } from '../src/primitives/Button';
 import { Card, CardContent, CardHeader } from '../src/primitives/Card';
-import { AddressInput } from '../src/components/AddressInput';
 import { HomeProfileForm, HomeProfile } from '../src/components/HomeProfileForm';
 import { EquipmentCard, Equipment } from '../src/components/EquipmentCard';
 import { CheckIcon, ZapIcon } from 'lucide-react';
 
 const STEPS = [
-  { id: 1, title: 'Your Location', description: 'Enter your address to find local rates and incentives' },
-  { id: 2, title: 'Home Profile', description: 'Tell us about your home and current energy usage' },
-  { id: 3, title: 'Equipment Selection', description: 'Choose the upgrades you want to explore' },
-  { id: 4, title: 'Review', description: 'Review your selections before calculating' },
+  { id: 1, title: 'Home Profile', description: 'Tell us about your home and current energy usage' },
+  { id: 2, title: 'Equipment Selection', description: 'Choose the upgrades you want to explore' },
+  { id: 3, title: 'Review & Calculate', description: 'Review your selections and calculate your savings' },
 ];
 
 const EQUIPMENT_OPTIONS: Array<{ equipment: Equipment; title: string; description: string; icon: React.ReactNode }> = [
@@ -62,7 +60,6 @@ const EQUIPMENT_OPTIONS: Array<{ equipment: Equipment; title: string; descriptio
 
 export const CalculatorPage = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [address, setAddress] = useState('');
   const [homeProfile, setHomeProfile] = useState<HomeProfile>({
     address: '',
     zipCode: '',
@@ -84,7 +81,7 @@ export const CalculatorPage = () => {
   };
 
   const handleNext = () => {
-    if (currentStep < 4) {
+    if (currentStep < 3) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -96,7 +93,7 @@ export const CalculatorPage = () => {
   };
 
   const handleCalculate = () => {
-    console.log('Calculating with:', { address, homeProfile, selectedEquipment: Array.from(selectedEquipment) });
+    console.log('Calculating with:', { homeProfile, selectedEquipment: Array.from(selectedEquipment) });
   };
 
   const renderProgressIndicator = () => (
@@ -116,7 +113,7 @@ export const CalculatorPage = () => {
           </div>
           {index < STEPS.length - 1 && (
             <div
-              className={`w-12 h-1 mx-2 ${
+              className={`w-16 h-1 mx-2 ${
                 currentStep > step.id ? 'bg-emerald-600' : 'bg-stone-200'
               }`}
             />
@@ -137,22 +134,10 @@ export const CalculatorPage = () => {
         </div>
 
         {currentStep === 1 && (
-          <Card>
-            <CardContent>
-              <AddressInput
-                value={address}
-                onChange={setAddress}
-                onValidate={async (addr) => addr.length > 5}
-              />
-            </CardContent>
-          </Card>
-        )}
-
-        {currentStep === 2 && (
           <HomeProfileForm value={homeProfile} onChange={setHomeProfile} />
         )}
 
-        {currentStep === 3 && (
+        {currentStep === 2 && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {EQUIPMENT_OPTIONS.map((option) => (
               <EquipmentCard
@@ -168,7 +153,7 @@ export const CalculatorPage = () => {
           </div>
         )}
 
-        {currentStep === 4 && (
+        {currentStep === 3 && (
           <Card>
             <CardHeader>
               <h3 className="text-lg font-semibold text-stone-900">Review Your Selections</h3>
@@ -176,16 +161,22 @@ export const CalculatorPage = () => {
             <CardContent>
               <div className="space-y-4">
                 <div className="p-4 bg-stone-50 rounded-lg">
-                  <p className="text-sm text-stone-500 mb-1">Address</p>
-                  <p className="font-medium text-stone-900">{address || 'Not entered'}</p>
+                  <p className="text-sm text-stone-500 mb-1">ZIP Code</p>
+                  <p className="font-medium text-stone-900">{homeProfile.zipCode || 'Not entered'}</p>
                 </div>
                 <div className="p-4 bg-stone-50 rounded-lg">
                   <p className="text-sm text-stone-500 mb-1">Home Size</p>
-                  <p className="font-medium text-stone-900">{homeProfile.squareFootage} sq ft</p>
+                  <p className="font-medium text-stone-900">{homeProfile.squareFootage.toLocaleString()} sq ft</p>
                 </div>
                 <div className="p-4 bg-stone-50 rounded-lg">
                   <p className="text-sm text-stone-500 mb-1">Current Heating</p>
                   <p className="font-medium text-stone-900 capitalize">{homeProfile.currentHeating}</p>
+                </div>
+                <div className="p-4 bg-stone-50 rounded-lg">
+                  <p className="text-sm text-stone-500 mb-1">Monthly Bills</p>
+                  <p className="font-medium text-stone-900">
+                    Electric: ${homeProfile.avgMonthlyElectricBill}/mo | Gas: ${homeProfile.avgMonthlyGasBill}/mo
+                  </p>
                 </div>
                 <div className="p-4 bg-stone-50 rounded-lg">
                   <p className="text-sm text-stone-500 mb-1">Selected Equipment</p>
@@ -226,7 +217,7 @@ export const CalculatorPage = () => {
           >
             Back
           </Button>
-          {currentStep < 4 ? (
+          {currentStep < 3 ? (
             <Button
               variant="primary"
               onClick={handleNext}
@@ -240,7 +231,7 @@ export const CalculatorPage = () => {
               onClick={handleCalculate}
               className="bg-emerald-600 hover:bg-emerald-700"
             >
-              Calculate
+              Calculate My Savings
             </Button>
           )}
         </div>
