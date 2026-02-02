@@ -1,6 +1,7 @@
 import { Button } from '../src/primitives/Button';
 import { Card, CardContent } from '../src/primitives/Card';
 import { MapPinIcon, HomeIcon, TrendingUpIcon, ZapIcon, CalendarIcon, DollarSignIcon } from 'lucide-react';
+import heroImage from '../assets/images/solar-home.jpg';
 
 export const LandingPage = () => {
   return (
@@ -20,13 +21,11 @@ export const LandingPage = () => {
               </Button>
             </div>
             <div className="relative">
-              {/* Replace with professional photo from Unsplash: modern home with solar panels, clean energy aesthetic */}
-              <div className="aspect-video rounded-xl bg-gradient-to-br from-emerald-100 to-sky-100 flex items-center justify-center shadow-lg">
-                <div className="text-center p-8">
-                  <HomeIcon className="w-16 h-16 text-emerald-600 mx-auto mb-4" />
-                  <p className="text-stone-600">Modern home with solar panels</p>
-                </div>
-              </div>
+              <img 
+                src={heroImage} 
+                alt="Modern home with solar panels" 
+                className="aspect-video rounded-xl object-cover shadow-lg w-full"
+              />
             </div>
           </div>
         </div>
@@ -134,7 +133,7 @@ export const LandingPage = () => {
           <p className="text-emerald-100 text-lg mb-8">
             Start calculating now and see how much you could save
           </p>
-          <Button variant="secondary" size="lg" className="bg-white text-emerald-600 hover:bg-stone-100">
+          <Button variant="primary" size="lg" className="bg-emerald-700 hover:bg-emerald-800 text-white">
             Get Started
           </Button>
         </div>
