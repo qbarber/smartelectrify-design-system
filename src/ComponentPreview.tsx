@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import { useState } from 'react';
 import {
   Button,
   Input,
@@ -31,7 +31,14 @@ import {
   DollarSignIcon,
   LeafIcon } from
 'lucide-react';
+import { LandingPage } from './pages/LandingPage';
+import { CalculatorPage } from './pages/CalculatorPage';
+import { ResultsPage } from './pages/ResultsPage';
+import { DashboardPage } from './pages/DashboardPage';
+
+type PageView = 'components' | 'landing' | 'calculator' | 'results' | 'dashboard';
 export const ComponentPreview = () => {
+  const [currentPage, setCurrentPage] = useState<PageView>('components');
   const [address, setAddress] = useState('');
   const [homeProfile, setHomeProfile] = useState<HomeProfile>({
     address: '123 Main St, Boston, MA',
@@ -174,8 +181,116 @@ export const ComponentPreview = () => {
       )
     })
   );
+  const pageButtons: { id: PageView; label: string }[] = [
+    { id: 'components', label: 'Components' },
+    { id: 'landing', label: 'Landing Page' },
+    { id: 'calculator', label: 'Calculator' },
+    { id: 'results', label: 'Results' },
+    { id: 'dashboard', label: 'Dashboard' },
+  ];
+
+  if (currentPage === 'landing') return (
+    <div>
+      <div className="bg-white border-b border-stone-200 px-4 py-2 flex gap-2 overflow-x-auto">
+        {pageButtons.map((btn) => (
+          <button
+            key={btn.id}
+            onClick={() => setCurrentPage(btn.id)}
+            className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap ${
+              currentPage === btn.id
+                ? 'bg-emerald-600 text-white'
+                : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+            }`}
+          >
+            {btn.label}
+          </button>
+        ))}
+      </div>
+      <LandingPage />
+    </div>
+  );
+
+  if (currentPage === 'calculator') return (
+    <div>
+      <div className="bg-white border-b border-stone-200 px-4 py-2 flex gap-2 overflow-x-auto">
+        {pageButtons.map((btn) => (
+          <button
+            key={btn.id}
+            onClick={() => setCurrentPage(btn.id)}
+            className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap ${
+              currentPage === btn.id
+                ? 'bg-emerald-600 text-white'
+                : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+            }`}
+          >
+            {btn.label}
+          </button>
+        ))}
+      </div>
+      <CalculatorPage />
+    </div>
+  );
+
+  if (currentPage === 'results') return (
+    <div>
+      <div className="bg-white border-b border-stone-200 px-4 py-2 flex gap-2 overflow-x-auto">
+        {pageButtons.map((btn) => (
+          <button
+            key={btn.id}
+            onClick={() => setCurrentPage(btn.id)}
+            className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap ${
+              currentPage === btn.id
+                ? 'bg-emerald-600 text-white'
+                : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+            }`}
+          >
+            {btn.label}
+          </button>
+        ))}
+      </div>
+      <ResultsPage />
+    </div>
+  );
+
+  if (currentPage === 'dashboard') return (
+    <div>
+      <div className="bg-white border-b border-stone-200 px-4 py-2 flex gap-2 overflow-x-auto">
+        {pageButtons.map((btn) => (
+          <button
+            key={btn.id}
+            onClick={() => setCurrentPage(btn.id)}
+            className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap ${
+              currentPage === btn.id
+                ? 'bg-emerald-600 text-white'
+                : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+            }`}
+          >
+            {btn.label}
+          </button>
+        ))}
+      </div>
+      <DashboardPage />
+    </div>
+  );
+
   return (
-    <div className="min-h-screen bg-slate-50 p-8">
+    <div className="min-h-screen bg-slate-50">
+      <div className="bg-white border-b border-stone-200 px-4 py-2 flex gap-2 overflow-x-auto">
+        {pageButtons.map((btn) => (
+          <button
+            key={btn.id}
+            onClick={() => setCurrentPage(btn.id)}
+            className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap ${
+              currentPage === btn.id
+                ? 'bg-emerald-600 text-white'
+                : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+            }`}
+          >
+            {btn.label}
+          </button>
+        ))}
+      </div>
+      <div className="p-8">
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -224,7 +339,7 @@ export const ComponentPreview = () => {
               <CardContent>
                 <div className="space-y-4">
                   <Input label="Text Input" placeholder="Enter text..." />
-                  <Input label="With Error" error="This field is required" />
+                  <Input label="With Error" error={true} errorMessage="This field is required" />
                   <Input label="With Helper" helperText="This is helper text" />
                   <Select
                     label="Select Dropdown"
@@ -371,6 +486,7 @@ export const ComponentPreview = () => {
             </div>
           </div>
         </section>
+      </div>
       </div>
     </div>);
 
