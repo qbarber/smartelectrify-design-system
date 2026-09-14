@@ -338,16 +338,12 @@ interface Scenario {
 MIT License - Free to use for personal and commercial projects
 
 ## 👤 Author
+Built by Quentin Barber for the SmartElectrify home electrification calculator, and reused for GridVoice, a community impact analysis tool for data center projects.
 
-Built by Quentin Barber for the SmartElectrify home electrification calculator.
-
-## 🔗 Related Projects
-
-- **smartelectrify-mvp-app** - Production application using this design system
-- **prepwell-design-system** - Sister design system for medical advocacy platform
-
+🔗 Related Projects
+smartelectrify-mvp-app - Production application using this design system
+GridVoice - Community impact analysis tool for data center siting decisions, reusing this design system's components and color palette
+prepwell-design-system - Sister design system for medical advocacy platform
 ---
 
 **Component library status: Production-ready** ✅
-
-Last updated: January 2026
